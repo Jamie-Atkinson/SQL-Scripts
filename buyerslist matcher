@@ -1,0 +1,4 @@
+SELECT buyer_corporate_identifier, buyer_name, gov_orgs.name,  registration_status
+	FROM public.buyers
+    left outer JOIN gov_orgs ON LEVENSHTEIN((buyers.normalize_name), gov_orgs.normalize_name) <= 1
+    order by gov_orgs.name
